@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PlayerParameters" load_steps=2 format=3 uid="uid://c8lx3elduewkc"]
+
+[ext_resource type="Script" uid="uid://85b0q2clrjhr" path="res://Scripts/Classes/player_parameters.gd" id="1_qiil2"]
+
+[resource]
+script = ExtResource("1_qiil2")
+jump_height = 100.0
+jump_time_to_peak = 0.5
+jump_time_to_descent = 0.4
+fast_fall_multiplier = 0.5
+jump_velocity = null
+jump_gravity = null
+fall_gravity = null
+run_top_speed = 350.0
+run_acceleration = 30.0
+run_deceleration = 40.0
+metadata/_custom_type_script = "uid://85b0q2clrjhr"
