@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://1t672ai0l3jr"]
+[gd_scene load_steps=13 format=3 uid="uid://1t672ai0l3jr"]
 
 [ext_resource type="Texture2D" uid="uid://crrwyydr5d6vp" path="res://Assets/sprites/char_test.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://r1dc2cjrkygb" path="res://Scripts/Player/player_controller.gd" id="1_g2els"]
 [ext_resource type="Resource" uid="uid://c8lx3elduewkc" path="res://Resources/parameters/player_parameters.tres" id="2_gy20a"]
 [ext_resource type="Script" uid="uid://5pvl783qcteo" path="res://Scripts/Player/player_animator.gd" id="2_qhqgy"]
+[ext_resource type="Theme" uid="uid://c1mtkyuafxa3c" path="res://Resources/ui/DebugPanel.tres" id="5_cqrjx"]
+[ext_resource type="Script" uid="uid://d0sphg757ek7s" path="res://Scenes/Characters/ui.gd" id="5_utp2y"]
+[ext_resource type="Script" uid="uid://c280hb2aoi8ny" path="res://Scenes/Characters/debug_panel.gd" id="6_khnq4"]
 
 [sub_resource type="Animation" id="Animation_g2els"]
 length = 0.001
@@ -68,7 +71,7 @@ height = 42.0
 script = ExtResource("1_g2els")
 stats = ExtResource("2_gy20a")
 animator = NodePath("AnimatorAgent")
-ui = NodePath("")
+ui = NodePath("UI")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
@@ -95,3 +98,27 @@ speed_scale = 0.7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 8)
 shape = SubResource("CapsuleShape2D_3vyb7")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_utp2y")
+
+[node name="DebugPanel" type="PanelContainer" parent="UI"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = -376.0
+offset_top = -210.0
+offset_right = -176.0
+offset_bottom = -168.0
+theme = ExtResource("5_cqrjx")
+script = ExtResource("6_khnq4")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/DebugPanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DebugPanel"]
+unique_name_in_owner = true
+layout_mode = 2

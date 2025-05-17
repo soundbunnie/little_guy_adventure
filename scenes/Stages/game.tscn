@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://v6xc02lqo3y5"]
+[gd_scene load_steps=8 format=4 uid="uid://v6xc02lqo3y5"]
 
 [ext_resource type="Texture2D" uid="uid://bjhmyfof2y144" path="res://Assets/tilesets/tileset.png" id="1_7evvd"]
+[ext_resource type="Script" uid="uid://db1wl7koodnl6" path="res://Scenes/Stages/game.gd" id="1_dyvre"]
 [ext_resource type="PackedScene" uid="uid://1t672ai0l3jr" path="res://Scenes/Characters/player.tscn" id="2_dyvre"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2o6t"]
@@ -144,6 +145,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_feb5d")
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_dyvre")
 
 [node name="Tiles" type="Node2D" parent="."]
 

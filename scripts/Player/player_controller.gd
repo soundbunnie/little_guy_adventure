@@ -2,16 +2,32 @@ extends CharacterBody2D
 class_name PlayerController
 
 @export var stats : PlayerParameters
+@export var animator : PlayerAnimator
+@export var ui : Control
+
+# Magic Math I stole
+@onready var jump_velocity:float = ((2.0 * stats.jump_height) / stats.jump_time_to_peak) * -1.0 
+@onready var jump_gravity:float = ((-2.0 * stats.jump_height) / (stats.jump_time_to_peak * stats.jump_time_to_peak)) * -1.0
+@onready var fall_gravity:float = ((-2.0 * stats.jump_height) / (stats.jump_time_to_peak * stats.jump_time_to_descent)) *-1.0
 
 var direction = 0
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+enum PlayerState {
+	IDLE,
+	RUNNING,
+	CROUCHING,
+	JUMPING,
+	FALLING
+}
+
+var _state: PlayerState = PlayerState.IDLE
 
 func _physics_process(delta):
+	check_state()
 	if not is_on_floor():
-		velocity.y += gravity * delta # Apply gravity when airborne
+		velocity.y += return_gravity() * delta # Apply gravity when airborne
 		
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and _state != PlayerState.JUMPING:
 		jump()
 		
 	if Input.is_action_just_released("jump"): # Fast Fall
@@ -32,8 +48,37 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, stats.run_deceleration)
 	move_and_slide()
 
-func get_jump_gravity() -> float:
-	return stats.jump_gravity if velocity.y < 0.0 else stats.fall_gravity
+func return_gravity() -> float:
+	return jump_gravity if velocity.y < 0.0 else fall_gravity
 	
 func jump():
-	velocity.y = stats.jump_velocity
+	velocity.y = jump_velocity
+	
+func set_state(new_state: PlayerState):
+	if new_state == _state:
+		return
+	_state = new_state
+	match _state:
+		PlayerState.IDLE:
+			animator.play_anim("idle")
+		PlayerState.RUNNING:
+			animator.play_anim("run")
+		PlayerState.CROUCHING:
+			pass
+		PlayerState.JUMPING:
+			pass
+		PlayerState.FALLING:
+			pass
+
+func check_state():
+	if is_on_floor():
+		if velocity.x == 0:
+			set_state(PlayerState.IDLE)
+		elif velocity.x != 0:
+			set_state(PlayerState.RUNNING)
+	if Input.is_action_pressed("crouch") and is_on_floor():
+		set_state(PlayerState.CROUCHING)
+	if velocity.y < 0:
+		set_state(PlayerState.JUMPING)
+	if velocity.y > 0:
+		set_state(PlayerState.FALLING)

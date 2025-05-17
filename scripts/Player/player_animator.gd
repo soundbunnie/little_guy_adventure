@@ -1,4 +1,5 @@
 extends Node2D
+class_name PlayerAnimator
 
 @export var player_controller : PlayerController
 @export var animation_player : AnimationPlayer
@@ -10,8 +11,6 @@ func _process(delta):
 		sprite.flip_h = false
 	elif player_controller.direction == -1:
 		sprite.flip_h = true
-	# Playing run animation if player is moving
-	if abs(player_controller.velocity.x) > 0.0:
-		animation_player.play("run")
-	else:
-		animation_player.play("idle")
+
+func play_anim(anim):
+	animation_player.play(anim)
