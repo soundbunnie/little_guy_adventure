@@ -8,6 +8,7 @@ jump_height = 90.0
 jump_time_to_peak = 0.3
 jump_time_to_descent = 0.2
 fast_fall_multiplier = 0.5
+coyote_timer = 0.1
 run_top_speed = 350.0
 run_acceleration = 30.0
 run_deceleration = 40.0

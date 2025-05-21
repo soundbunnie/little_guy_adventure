@@ -154,7 +154,7 @@ tile_map_data = PackedByteArray("AAABAB8AAAAHAAMAAABHAB8AAAAIAAMAAAACAB8AAAAHAAM
 tile_set = SubResource("TileSet_feb5d")
 
 [node name="Platform" type="TileMapLayer" parent="Tiles"]
-tile_map_data = PackedByteArray("AAAbABwAAAAGAAAAAAAcABwAAAAGAAAAAAAdABwAAAAGAAAAAAA=")
+tile_map_data = PackedByteArray("AAAbABwAAAAGAAAAAAAcABwAAAAGAAAAAAAdABwAAAAGAAAAAAAqABwAAAAGAAAAAAArABwAAAAHAAAAAAAsABwAAAAIAAAAAAAjABgAAAAGAAAAAAAkABgAAAAHAAAAAAAlABgAAAAIAAAAAAA=")
 tile_set = SubResource("TileSet_fc0e3")
 
 [node name="Player" parent="." instance=ExtResource("2_dyvre")]

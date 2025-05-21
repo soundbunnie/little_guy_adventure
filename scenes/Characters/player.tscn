@@ -64,11 +64,10 @@ _data = {
 radius = 14.0
 height = 42.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator", "ui")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator")]
 script = ExtResource("1_g2els")
 stats = ExtResource("2_gy20a")
 animator = NodePath("AnimatorAgent")
-ui = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
